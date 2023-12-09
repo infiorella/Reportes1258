@@ -1,0 +1,148 @@
+﻿@model Models.Informe
+
+@{
+    ViewData["Title"] = "Reporte Notas";
+
+}
+
+@section AddToHead{
+    <link href="@Url.Content("~/css/select2.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/app-steps.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/jquery.timepicker.css")" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <style type="text/css">
+        #msform #progressbar li {
+            width: calc(100%/2);
+        }
+
+        #progressbar #General:before {
+            font-family: FontAwesome;
+            content: "\f023";
+        }
+
+        #progressbar #Asistencia:before {
+            font-family: FontAwesome;
+            content: "\f023";
+        }
+    </style>
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+        <h2 class="page-title">Nuevo Informe de Notas</h2>
+        <p>Creación de informe</p>
+        @if (TempData["msg"] != null)
+        {
+            @if (TempData["Status"].ToString() == "1")
+            {
+
+                <div class="alert alert-success" role="alert">
+                    <span class="fe fe-smile fe-16 mr-2"></span> @TempData["msg"]
+                </div>
+
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span class="fe fe-alert-triangle fe-16 mr-2"></span> @TempData["msg"]
+                </div>
+            }
+        }
+
+        <div class="card my-4">
+            <div class="card-header">
+                <strong>Creación de Informe</strong>
+            </div>
+            <div class="card-body">
+                <form id="msform" asp-action="CreateGrades" asp-controller="Reports">
+                    <input asp-for="IdPersonal" hidden />
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="General"><strong>Datos Generales</strong></li>
+                        <li id="Final"><strong>Detalles Finales</strong></li>
+                    </ul>
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label asp-for="Trimestre" class="simple-select2">Trimestre</label>
+                            <select asp-for="Trimestre" data-column="0" id="meses" class="form-control select2">
+                                <option value="1">Primer Trimestre</option>
+                                <option value="2">Segundo Trimestre</option>
+                                <option value="3">Tercer Trimestre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label class="control-label">Docente</label>
+                                        <p class="form-control">@Model.IdPersonalNavigation.Nombres @Model.IdPersonalNavigation.Apellidos</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <label asp-for="IdPersonalNavigation.Seccion" class="control-label">Sección</label>
+                                        <select asp-for="IdPersonalNavigation.Seccion" class="form-control select2" disabled id="simple-select2">
+                                            <option value="1">Primero</option>
+                                            <option value="2">Segundo</option>
+                                            <option value="3">Tercero</option>
+                                            <option value="4">Cuarto</option>
+                                            <option value="5">Quinto</option>
+                                            <option value="6">Sexto</option>
+                                        </select>
+                                        <span asp-validation-for="IdPersonalNavigation.Seccion" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <label asp-for="IdPersonalNavigation.Grado" class="control-label">Grado</label>
+                                        <select asp-for="IdPersonalNavigation.Grado" class="form-control select2" disabled id="simple-select2">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                        </select>
+                                        <span asp-validation-for="IdPersonalNavigation.Seccion" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-text text-muted">(*) Obligatorio</div>
+
+                        <br />
+                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-group">
+                            <label asp-for="Comentario" class="control-label">Comentario</label>
+                            <div>
+                                <textarea asp-for="Comentario" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                        <input type="submit" class="next action-button" value="Generar" />
+                    </fieldset>
+
+                </form>
+            </div> <!-- .card-body -->
+        </div> <!-- .card -->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
+@section scripts
+    {
+    <script src='~/js/select2.min.js' type="text/javascript"></script>
+    <script src='~/js/jquery.timepicker.js' type="text/javascript"></script>
+}
+
+@section SingleScripts
+    {
+    <script src='~/js/app-steps.js' type="text/javascript"></script>
+    <script src="~/js/Reports/ReportCreateGrades.js" type="text/javascript" asp-append-version="true"></script>
+}

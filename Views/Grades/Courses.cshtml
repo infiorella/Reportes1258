@@ -1,0 +1,301 @@
+﻿@{
+    ViewData["Title"] = "Cursos";
+}
+
+@section AddToHead{
+    <link href="@Url.Content("~/css/dataTables.bootstrap4.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="row align-items-center my-3">
+            <div class="col">
+                <h2 class="page-title">Notas del @TempData["Grado"] "@TempData["Seccion"]"</h2>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-lg btn-primary"><span class="fe fe-plus fe-16 mr-3"></span>Importar</button>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-lg btn-primary"><span class="fe fe-file-plus fe-16 mr-3"></span>Crear Informe</button>
+            </div>
+        </div>
+        <div class="border-top">
+            <div class="mt-4">
+                <h6 class="mb-3">Cursos</h6>
+                <div class="row my-4 pb-4">
+
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+@*                                     <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-users fe-24 text-secondary"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 5</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="PS">
+                                    <strong>Personal Social</strong>
+                                </a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+
+
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-bell fe-24 text-info"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 3</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="EF">
+                                    <strong>Educación Física</strong>
+                                </a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                   @*  <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-book-open fe-24 text-success"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-users text-muted mr-2">Competencias: 3</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="CM">
+                                    <strong>Comunicación</strong>
+                                </a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-tv fe-24 text-warning"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 2</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="AC">
+                                    <strong>Arte y Cultura</strong>
+                                </a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-italic fe-24 text-primary"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 3</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="CS">
+                                    <strong>Comunicación</strong>
+                                </a>                                
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-mic fe-24 text-danger"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 3</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="IN">
+                                    <strong>Inglés</strong>
+                                </a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-pie-chart fe-24 text-secondary"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 4</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="MT"><strong>Matemática</strong></a>
+
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-thermometer fe-24 text-info"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 3</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="CT">
+                                    <strong>Ciencia y Tecnología</strong></a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+
+
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                    @* <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-plus fe-24 text-success"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 2</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="ER"><strong>Educación Religiosa</strong></a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+
+                    <div class="col-md-3">
+                        <div class="card shadow text-center mb-4">
+                            <div class="card-body file">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Acción</span>
+                                    </button>
+                                   @*  <div class="dropdown-menu m-2">
+                                        <a class="dropdown-item" href="#"><i class="fe fe-chevrons-right fe-12 mr-4"></i>Visualizar</a>
+                                        <a class="dropdown-item" href="#"><i class="fe fe-copy fe-12 mr-4"></i>Imprimir</a>
+                                    </div> *@
+                                </div>
+                                <div class="circle circle-lg bg-light my-4">
+                                    <span class="fe fe-star fe-24 text-warning"></span>
+                                </div>
+                                <div class="file-info">
+                                    <span class="badge badge-light text-muted mr-2">Competencias: 2</span>
+                                </div>
+                            </div> <!-- .card-body -->
+                            <div class="card-footer bg-transparent border-0 fname">
+                                <a asp-controller="Grades" asp-action="List" asp-route-Grado="@TempData["Grado"]" asp-route-Seccion="@TempData["Seccion"]" asp-route-Area="COT">
+                                <strong>Competencias Transversales</strong></a>
+                            </div> <!-- .card-footer -->
+                        </div> <!-- .card -->
+                    </div> <!-- .col -->
+                </div> <!-- .row -->
+            </div> <!-- .file-panel -->
+
+        </div> <!-- .file-container -->
+    </div> <!-- .col -->
+</div> <!-- .row -->
+
+
+@section scripts
+{
+    <script src='~/js/jquery.dataTables.min.js'></script>
+    <script src='~/js/dataTables.bootstrap4.min.js'></script>
+    <script src="~/js/Content/students.js" type="text/javascript"></script>
+}

@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Importar Personal";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center my-3">
+            <div class="col">
+                <h2 class="page-title">Migración de información</h2>
+                <p>Información de Personal de la I.E</p>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header">
+                <strong>Personal</strong>
+            </div>
+
+            <form method="post" asp-controller="Staff" asp.action="Import" enctype="multipart/form-data">
+                <div class="card-body">
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <strong>Carga de Archivos</strong>
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+                                <p>La estructura del documento deberá coincidir con la <strong><a href="~/documents/directorioplantilla.xlsx">plantilla</a></strong> para que se puedan migrar los datos correctamente.</p>
+                            </div>
+                            <br />
+                            <div class="form-group mb-3">
+                                <label for="example-fileinput">Ingrese el archivo excel</label>
+                                <input type="file" accept=".xlsx, .xls, .csv" id="archivo" class="form-control-file">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center form-group">
+                        <input type="submit" value="Migrar" class="btn btn-primary">
+                    </div>
+                </div> <!-- .card-body -->
+            </form>
+        </div> <!-- .card -->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
+@section SingleScripts
+    {
+    <script src="~/js/Content/ImportDataStaff.js" type="text/javascript" asp-append-version="true"></script>
+}

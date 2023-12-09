@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewData["Title"] = "Asistencia";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center my-4">
+            <div class="col">
+                <h2 class="mb-2 page-title">Asistencia</h2>
+                <p class="card-text">
+                    Lista de Asistencia 
+                    <b>
+                        @TempData["Grado"] "@TempData["Seccion"]"                                     
+                    </b>
+                </p>
+               
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-primary" asp-controller="Attendance" asp-action="ImportData">
+                    <span class="fe fe-plus fe-16 mr-3"></span>Importar Datos
+                </a>               
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-9 col-md-8">
+                                <h4 class="mb-0" id="FaltasNoJustificadas"></h4>
+                                <p class="small text-muted mb-0">Faltas No Justificadas</p>
+                            </div>
+                            <div class="col">
+                                <span class="circle circle-md bg-danger">
+                                    <span class="fe fe-users fe-24 text-white"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-9 col-md-8">
+                                <h4 class="mb-0" id="FaltasJustificadas"></h4>
+                                <p class="small text-muted mb-0">Faltas Justificadas</p>
+                            </div>
+                            <div class="col">
+                                <span class="circle circle-md bg-success">
+                                    <span class="fe fe-users fe-24 text-white"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-9 col-md-8">
+                                <h4 class="mb-0" id="TardanzasNoJustificadas"></h4>
+                                <p class="small text-muted mb-0">Tardanzas No Justificadas</p>
+                            </div>
+                            <div class="col">
+                                <span class="circle circle-md bg-warning">
+                                    <span class="fe fe-users fe-24 text-white"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-9 col-md-8">
+                                <h4 class="mb-0" id="TardanzasJustificadas"></h4>
+                                <p class="small text-muted mb-0">Tardanzas Justificadas</p>
+                            </div>
+                            <div class="col">
+                                <span class="circle circle-md bg-secondary">
+                                    <span class="fe fe-users fe-24 text-white"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end section -->
+
+
+        <div class="row my-4">
+            <!-- Small table -->
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-row">
+                                    <div class="form-group align-middle col-md-2">
+                                        <h5>Mes</h5>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <select data-column="0" id="meses" class="form-control filter-select">
+                                            <option value="3">Marzo</option>
+                                            <option value="4">Abril</option>
+                                            <option value="5">Mayo</option>
+                                            <option value="6">Junio</option>
+                                            <option value="7">Julio</option>
+                                            <option value="8">Agosto</option>
+                                            <option value="9">Septiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" id="Grado" value="@TempData["Grado"]" />
+                        <input type="hidden" id="Seccion" value="@TempData["Seccion"]" />
+
+                        <div class="table-responsive">
+                            <table class="table" id="tableAttendance">
+
+                                <thead>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+
+
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div> <!-- simple table -->
+        </div> <!-- end section -->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
+@section scripts
+    {
+    <script src="~/js/Content/Attendance.js" type="text/javascript" asp-append-version="true"></script>
+}

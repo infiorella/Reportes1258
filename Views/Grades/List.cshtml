@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Notas";
+}
+
+@section AddToHead{
+    <link href="@Url.Content("~/css/dataTables.bootstrap4.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center my-4">
+            <div class="col">
+                <h2 class="mb-2 page-title">Notas</h2>
+                <p class="card-text">
+                    Lista de Notas del <b>
+                        @TempData["Grado"] "@TempData["Seccion"]"
+                    </b>
+                </p>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-primary" asp-controller="Grades" asp-action="ImportData">
+                    <span class="fe fe-plus fe-16 mr-3"></span>Importar Datos
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h4 class="mb-0" id="AlumnosDesaprobados"></h4>
+                                <p class="small text-muted mb-0"># Alumnos Desaprobados</p>
+                            </div>
+                            <div class="col-4">
+                                <span class="fe fe-32 fe-users mb-0 float-right text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h4 class="mb-0" id="AlumnosAprobados"></h4>
+                                <p class="small text-muted mb-0"># Alumnos Aprobados</p>
+                            </div>
+                            <div class="col-4">
+                                <span class="fe fe-32 fe-users text-success mb-0 float-right"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h4 class="mb-0" id="LogroAlcanzado"> %</h4>
+                                <p class="small text-muted mb-0">Alumnos con logro alcanzado</p>
+                            </div>
+                            <div class="col-4">
+                                <span class="fe fe-32 fe-award text-warning mb-0 float-right"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end section -->
+
+
+        <div class="row my-4">
+            <!-- Small table -->
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="form-row">
+                                <div class="form-group align-middle col-md-2">
+                                    <h5>Competencia: </h5>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select data-column="0" id="selectCompetencias" class="form-control filter-select">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="Grado" value="@TempData["Grado"]" />
+                        <input type="hidden" id="Seccion" value="@TempData["Seccion"]" />
+                        <input type="hidden" id="Area" value="@TempData["Area"]" />
+                        <!-- table -->
+                        <table class="table datatables" id="tableGrades">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Alumno</th>
+                                    <th>Competencias</th>
+                                    <th>Trimestre 1</th>
+                                    <th>Trimestre 2</th>
+                                    <th>Trimestre 3</th>
+                                    <th>Comentario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div> <!-- simple table -->
+        </div> <!-- end section -->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
+@section scripts
+    {
+    <script src='~/js/jquery.dataTables.min.js'></script>
+    <script src='~/js/dataTables.bootstrap4.min.js'></script>
+    <script src="~/js/Content/Grades.js" type="text/javascript"></script>
+}

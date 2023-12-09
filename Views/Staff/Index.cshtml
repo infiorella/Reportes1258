@@ -1,0 +1,206 @@
+﻿@model IEnumerable<Models.PersonalEducativo>
+
+
+@{
+    ViewData["Title"] = "Personal";
+}
+
+<div id="PlaceHolderHere"></div>
+
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        @if (TempData["msg"] != null)
+        {
+            @if (TempData["Status"].ToString() == "1")
+            {
+
+                <div class="alert alert-success" role="alert">
+                    <span class="fe fe-smile fe-16 mr-2"></span> @TempData["msg"]
+                </div>
+
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span class="fe fe-alert-triangle fe-16 mr-2"></span>@TempData["msg"]
+                </div>
+            }
+        }
+
+        <div class="row align-items-center my-3">
+            <div class="col">
+                <h2 class="page-title">Personal</h2>
+                <p>Miembros del personal de la Institución Educativa</p>
+            </div>
+
+            @if (this.User.IsInRole("Administrador"))
+            {
+                <div class="col-auto">
+                    <button type="button" class="btn btn-lg btn-primary" onclick="location.href='@Url.Action("ImportData", "Staff")'"><span class="fe fe-truck fe-16 mr-3"></span>Importar</button>
+                </div>
+            }
+
+            <div class="col-auto">
+                <button type="button" class="btn btn-lg btn-primary" onclick="location.href='@Url.Action("Create", "Staff")'"><span class="fe fe-plus fe-16 mr-3"></span>Crear</button>
+            </div>
+        </div>
+
+    </div>
+
+    <table class="table table-borderless table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Telefono</th>
+                <th>Correo Electrónico</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">
+                    <span class="small text-muted text-uppercase"><strong>Directivos</strong></span>
+                </td>
+            </tr>
+            @foreach (var item in Model.Where(x => x.Rol == 3).OrderBy(x => x.Apellidos))
+            {
+                <tr>
+                    <td class="text-center">
+                        <div class="circle circle-sm bg-light">
+                            @if (item.Imagen == null)
+                            {
+                                <span class="fe fe-user fe-16 text-muted"></span>
+                            }
+                            else
+                            {
+                                <span class="avatar avatar-sm mt-2">
+                                    <img src="@item.Imagen" alt="..." class=" ">
+                                </span>
+                            }
+                        </div>
+                        <span class="dot dot-md bg-primary mr-1"></span>
+                    </td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Nombres)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                    <td class="text-muted"> @Html.DisplayFor(modelItem => item.Dni)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Telefono)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.CorreoElectronico)</td>
+                    <td>
+                        <div class="file-action">
+                            <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="text-muted sr-only">Acción</span>
+                            </button>
+                            <div class="dropdown-menu m-2">
+                                <a style="color: #212529 !important"  class="dropdown-item" data-toggle="ajax-modal" data-url="@Url.Action("Details", "Staff", new {id= item.IdPersonal})"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.IdPersonal"><i class="fe fe-edit-3 fe-12 mr-4"></i>Editar</a>
+                                <a class="dropdown-item" onclick="Delete(@item.IdPersonal)"><i class="fe fe-edit-3 fe-12 mr-4"></i>Eliminar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+            <!--Docentes de tiempo completo-->
+            <tr>
+                <td colspan="6">
+                    <span class="small text-muted text-uppercase"><strong>Docentes de Tiempo Completo</strong></span>
+                </td>
+            </tr>
+            @foreach (var item in Model.Where(x => x.Rol == 1).OrderBy(x => x.Apellidos))
+            {
+                <tr>
+                    <td class="text-center">
+                        <div class="circle circle-sm bg-light">
+                            @if (item.Imagen == null)
+                            {
+                                <span class="fe fe-user fe-16 text-muted"></span>
+                            }
+                            else
+                            {
+                                <span class="avatar avatar-sm mt-2">
+                                    <img src="./assets/avatars/face-1.jpg" alt="..." class=" ">
+                                </span>
+                            }
+                        </div>
+                        <span class="dot dot-md bg-primary mr-1"></span>
+                    </td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Nombres)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                    <td class="text-muted"> @Html.DisplayFor(modelItem => item.Dni)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Telefono)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.CorreoElectronico)</td>
+                    <td>
+                        <div class="file-action">
+                            <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="text-muted sr-only">Acción</span>
+                            </button>
+                            <div class="dropdown-menu m-2">
+                                <a style="color: #212529 !important" class="dropdown-item" data-toggle="ajax-modal" data-url="@Url.Action("Details", "Staff", new {id= item.IdPersonal})"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                @if (this.User.IsInRole("Administrador"))
+                                {
+                                    <a style="color: #212529 !important" class="dropdown-item" data-toggle="ajax-modal" data-url="@Url.Action("Details", "Staff", new {id= item.IdPersonal})"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                    <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.IdPersonal"><i class="fe fe-edit-3 fe-12 mr-4"></i>Editar</a>
+                                    <a class="dropdown-item" onclick="Delete(@item.IdPersonal)"><i class="fe fe-edit-3 fe-12 mr-4"></i>Eliminar</a>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+
+            <!--Docentes de tiempo parcial-->
+            <tr>
+                <td colspan="6">
+                    <span class="small text-muted text-uppercase"><strong>Docentes de Tiempo Parcial</strong></span>
+                </td>
+            </tr>
+
+            @foreach (var item in Model.Where(x => x.Rol == 2).OrderBy(x => x.Apellidos))
+            {
+                <tr>
+                    <td class="text-center">
+                        <div class="circle circle-sm bg-light">
+                            @if (item.Imagen == null)
+                            {
+                                <span class="fe fe-user fe-16 text-muted"></span>
+                            }
+                            else
+                            {
+                                <span class="avatar avatar-sm mt-2">
+                                    <img src="./assets/avatars/face-1.jpg" alt="..." class=" ">
+                                </span>
+                            }
+                        </div>
+                        <span class="dot dot-md bg-primary mr-1"></span>
+                    </td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Nombres)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Dni)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.Telefono)</td>
+                    <td class="text-muted">@Html.DisplayFor(modelItem => item.CorreoElectronico)</td>
+                    <td>
+                        <div class="file-action">
+                            <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="text-muted sr-only">Acción</span>
+                            </button>
+                            <div class="dropdown-menu m-2">
+                                <a style="color: #212529 !important" class="dropdown-item" data-toggle="ajax-modal" data-url="@Url.Action("Details", "Staff", new {id= item.IdPersonal})"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.IdPersonal"><i class="fe fe-edit-3 fe-12 mr-4"></i>Editar</a>
+                                <a class="dropdown-item" onclick="Delete(@item.IdPersonal)"><i class="fe fe-edit-3 fe-12 mr-4"></i>Eliminar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts
+    {
+    <script src="~/js/Content/Staff.js" asp-append-version="true"></script>
+}

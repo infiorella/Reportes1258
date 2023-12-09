@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Models.Views.UsersViewModel>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+@section AddToHead{
+    <link href="@Url.Content("~/css/dataTables.bootstrap4.css")" rel="stylesheet" type="text/css" />
+
+    <style>
+        a:hover {
+            cursor: pointer;
+        }
+
+    </style>
+}
+
+<div id="PlaceHolderHere"></div>
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center my-3">
+            <div class="col">
+                <h2 class="page-title">Lista de Usuarios</h2>
+                <p>Usuarios del Sistema</p>
+            </div>
+
+
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addUsuarios" data-url="@Url.Action("Create")"><span class="fe fe-plus fe-16 mr-3"></span>Crear Nuevo</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (TempData["msg"] != null)
+                {
+                    @if (TempData["Status"].ToString() == "1")
+                    {
+
+                        <div class="alert alert-success" role="alert">
+                            <span class="fe fe-smile fe-16 mr-2"></span> @TempData["msg"]
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <span class="fe fe-alert-triangle fe-16 mr-2"></span> @TempData["msg"]
+                        </div>
+                    }
+                }
+
+                <br />
+                <!-- Small table -->
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="col-md-12">
+
+                            <!-- table -->
+                            <table class="table datatables" id="dataTable">
+
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Usuario</th>
+                                        <th>Rol</th>
+                                        <th>Fecha Creación</th>
+                                        <th>Fecha Modificación</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Creacion)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Modificacion)</td>
+                                            <td>
+                                                <div class="file-action">
+                                                    <button type="button" class="btn btn-link dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Accion</span>
+                                                    </button>
+                                                    <div class="dropdown-menu m-2">
+                                                        <a class="dropdown-item" data-toggle="ajax-modal" data-url="@Url.Action("Details", "Users", new {id= item.Id})"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                                        <a class="dropdown-item" data-toggle="ajax-modal" data-url="@Url.Action("Edit", "Users", new {id= item.Id})"><i class="fe fe-edit-2 fe-12 mr-4"></i>Editar</a>
+                                                        <a class="dropdown-item" id="deleteUsers" data-runid="@item.Id"><i class="fe fe-trash fe-12 mr-4"></i>Dar de baja</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- customized table -->
+        </div> <!-- end section -->
+
+    </div> <!-- .row -->
+</div> <!-- .container-fluid -->
+@section scripts
+    {
+    <script src='~/js/jquery.dataTables.min.js'></script>
+    <script src='~/js/dataTables.bootstrap4.min.js'></script>
+    <script src="~/js/sweetalert.min.js"></script>
+    <script src="~/js/Content/users.js" asp-append-version="true"></script>
+    <script src="~/js/site.js"></script>
+}

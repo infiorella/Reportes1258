@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Models.PersonalEducativo>
+
+@{
+    ViewData["Title"] = "Grado y Sección";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+        <div class="row align-items-center my-4">
+            <div class="col">
+                <h2 class="page-title">Grado y Sección</h2>
+                <p>Asistencia</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!------First Grade-------->
+                <h6 class="mb-3">PRIMER GRADO</h6>
+                <div class="card-deck mb-4">
+                    @foreach (var item in Model.Where(x => x.Grado == 1))
+                    {
+                        string link = "../img/YearSection/" + item.Grado + item.Seccion.Trim() + ".png";
+                        <div class="card border-0 bg-transparent">
+
+                            <img src="@link" alt="..." class="card-img-top img-fluid rounded">
+                            <div class="card-body">
+                                <a asp-area="" asp-controller="Attendance" asp-action="List" asp-route-Grado="@item.Grado" asp-route-Seccion="@item.Seccion.Trim()"><h5 class="h6 card-title mb-1">@item.Nombres @item.Apellidos</h5></a>
+
+                            </div>
+                        </div> <!-- .card -->
+                    }
+                </div> <!-- .card-deck -->
+            </div>
+        </div>
+        <!---Second grade--->
+        <h6 class="mb-3"><u>SEGUNDO GRADO</u></h6>
+        <div class="card-deck mb-4">
+            @foreach (var item in Model.Where(x => x.Grado == 2))
+            {
+                string link = "../img/YearSection/" + item.Grado + item.Seccion.Trim() + ".png";
+                <div class="card border-0 bg-transparent">
+
+                    <img src="@link" alt="..." class="card-img-top img-fluid rounded">
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="Attendance" asp-action="List" asp-route-Grado="@item.Grado" asp-route-Seccion="@item.Seccion.Trim()"><h5 class="h6 card-title mb-1">@item.Nombres @item.Apellidos</h5></a>
+
+                    </div>
+                </div> <!-- .card -->
+            }
+        </div> <!-- .card-deck -->
+        <!---Third Grade--->
+        <h6 class="mb-3">Tercer Grado</h6>
+        <div class="card-deck mb-4">
+            @foreach (var item in Model.Where(x => x.Grado == 3))
+            {
+                string link = "../img/YearSection/" + item.Grado + item.Seccion.Trim() + ".png";
+                <div class="card border-0 bg-transparent">
+
+                    <img src="@link" alt="..." class="card-img-top img-fluid rounded">
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="Attendance" asp-action="List" asp-route-Grado="@item.Grado" asp-route-Seccion="@item.Seccion.Trim()"><h5 class="h6 card-title mb-1">@item.Nombres @item.Apellidos</h5></a>
+
+                    </div>
+                </div> <!-- .card -->
+            }
+        </div> <!-- .card-deck -->
+        <!------Forth Grade------->
+        <h6 class="mb-3">Cuarto Grado</h6>
+        <div class="card-deck mb-4">
+            @foreach (var item in Model.Where(x => x.Grado == 4))
+            {
+                string link = "../img/YearSection/" + item.Grado + item.Seccion.Trim() + ".png";
+                <div class="card border-0 bg-transparent">
+
+                    <img src="@link" alt="..." class="card-img-top img-fluid rounded">
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="Attendance" asp-action="List" asp-route-Grado="@item.Grado" asp-route-Seccion="@item.Seccion.Trim()"><h5 class="h6 card-title mb-1">@item.Nombres @item.Apellidos</h5></a>
+
+                    </div>
+                </div> <!-- .card -->
+            }
+        </div> <!-- .card-deck -->
+        <!------Fifth grade----->
+        <h6 class="mb-3">Quinto Grado</h6>
+        <div class="card-deck mb-4">
+            @foreach (var item in Model.Where(x => x.Grado == 5))
+            {
+                string link = "../img/YearSection/" + item.Grado + item.Seccion.Trim() + ".png";
+                <div class="card border-0 bg-transparent">
+
+                    <img src="@link" alt="..." class="card-img-top img-fluid rounded">
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="Attendance" asp-action="List" asp-route-Grado="@item.Grado" asp-route-Seccion="@item.Seccion.Trim()"><h5 class="h6 card-title mb-1">@item.Nombres @item.Apellidos</h5></a>
+
+                    </div>
+                </div> <!-- .card -->
+            }
+        </div> <!-- .card-deck -->
+        <!----Sixth Grade---->
+        <h6 class="mb-3">Sexto Grado</h6>
+        <div class="card-deck mb-4">
+            @foreach (var item in Model.Where(x => x.Grado == 6))
+            {
+                string link = "../img/YearSection/" + item.Grado + item.Seccion.Trim() + ".png";
+                <div class="card border-0 bg-transparent">
+
+                    <img src="@link" alt="..." class="card-img-top img-fluid rounded">
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="Attendance" asp-action="List" asp-route-Grado="@item.Grado" asp-route-Seccion="@item.Seccion.Trim()"><h5 class="h6 card-title mb-1">@item.Nombres @item.Apellidos</h5></a>
+
+                    </div>
+                </div> <!-- .card -->
+            }
+        </div> <!-- .card-deck -->
+
+
+    </div>
+</div> <!-- .row -->

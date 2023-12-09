@@ -1,0 +1,30 @@
+﻿@model Models.Reunion
+
+@{
+    ViewData["Title"] = "Informe Generado";
+}
+
+
+<div class="col-12">
+    <div class="row align-items-center my-3">
+        <div class="col">
+            <h2 class="page-title">Vista Previa de Acta de Sesión Extraordinaria</h2>
+            <p>Informe Generado por el Sistema</p>
+        </div>
+
+        <div class="col-auto">
+            <button type="button" class="btn btn-lg btn-primary"><span class="fe fe-mail fe-16 mr-3"></span>Enviar Correo</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-lg btn-primary"><span class="fe fe-printer fe-16 mr-3"></span>Imprimir</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-lg btn-primary"><span class="fe fe-download fe-16 mr-3"></span>Descargar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="tab-pane active" style="width: 100%; height: 100%" id="dokument">
+    <iframe width="100%" height="600" width="800" src="@Url.Action("ViewPDFExtraordinary", "Reports", Model)"></iframe>
+</div>

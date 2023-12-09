@@ -1,0 +1,54 @@
+﻿@model Models.Migration.SIAGIEStudents
+
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center my-3">
+            <div class="col">
+                <h2 class="page-title">Migración de información</h2>
+                <p>Información de Estudiantes desde SIAGIE hacia la base de datos</p>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <div class="card-header">
+                <strong>Estudiantes</strong>
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <strong>Carga de Archivos</strong>
+                    </div>
+
+                    <div class="card-body">
+                        <div>
+                            <p>Exporta el documento de estudiantes desde el sistema SIAGIE. La estructura del documento deberá coincidir con la <strong><a href="~/documents/alumnosplantilla.xlsx">plantilla</a></strong> para poder migrar los datos correctamente.</p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="example-fileinput">Ingrese el archivo excel</label>
+                            <input type="file" accept=".xlsx, .xls, .csv" id="archivo" class="form-control-file">
+                        </div>
+                    </div> <!-- .card-body -->
+                </div> <!-- .card -->
+
+            </div> <!-- .card-body -->
+        </div> <!-- .card -->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
+@section scripts
+    {
+    <script src="~/js/sweetalert.min.js"></script>
+}
+
+@section SingleScripts
+    {
+    <script src="~/js/Content/ImportDataStudents.js" type="text/javascript" asp-append-version="true"></script>
+}

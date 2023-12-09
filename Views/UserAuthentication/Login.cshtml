@@ -1,0 +1,69 @@
+﻿@model Models.DTO.LoginModel
+@{
+    Layout = "";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+    <title>Colegio 1258</title>
+    <!-- Simple bar CSS -->
+    <link rel="stylesheet" href="../css/simplebar.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body class="light">
+    <div class="container">
+        <div class="cover">
+            <div class="front">
+                <img src="../img/inicio.jpg" alt="Login">
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Iniciar Sesión</div>
+                    <form asp-action="Login" method="post">
+
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="text" asp-for="Username" placeholder="Usuario" />
+                                <div class="msg">
+                                    <span asp-validation-for="Username"></span>
+                                </div>
+                            </div>
+
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" asp-for="Password" placeholder="Contraseña" />
+                                <div class="msg">
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @if (TempData["msg"] != null)
+                        {
+                            <div class="msg">
+                                @TempData["msg"]
+                            </div>
+                        }
+
+                        <br />
+                        <div class="button input-box">
+                            <button type="submit">Login</button>
+                        </div>                       
+                    </form>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

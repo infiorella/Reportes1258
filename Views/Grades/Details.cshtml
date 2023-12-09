@@ -1,0 +1,84 @@
+﻿@model Nota
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Nota</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Area Curricular
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AreaCurricular)
+        </dd>
+        <dt class = "col-sm-2">
+            Competencia
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Competencia)
+        </dd>
+        <dt class = "col-sm-2">
+            Cal1
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cal1)
+        </dd>
+        <dt class = "col-sm-2">
+            Cal2
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cal2)
+        </dd>
+        <dt class = "col-sm-2">
+            Cal3
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cal3)
+        </dd>
+        <dt class = "col-sm-2">
+            CalAnual
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CalAnual)
+        </dd>
+        <dt class = "col-sm-2">
+            Comentario
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comentario)
+        </dd>
+        <dt class = "col-sm-2">
+           Estado
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdEstado)
+        </dd>
+        <dt class = "col-sm-2">
+            Fecha de Creacion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt class = "col-sm-2">
+            Usuario que lo creó
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserCreacion)
+        </dd>
+        <dt class = "col-sm-2">
+            Alumno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdAlumnoNavigation.IdAlumno)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdNota">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

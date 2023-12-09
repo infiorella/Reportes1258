@@ -1,0 +1,122 @@
+﻿@model Models.PersonalEducativo
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Detalles";
+}
+
+<div class="modal fade" id="detailsPersonal" aria-hidden="true" aria-labelledby="Crear">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="#detailsPersonalLabel">Detalles de Personal</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                @if (Model.Grado != null)
+                {
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold">
+                            Grado
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(model => model.Grado)
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold">
+                            Seccion
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(model => model.Seccion)
+                        </div>
+                    </div>                
+                }
+                
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 font-weight-bold">
+                        Apellidos
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(model => model.Apellidos)
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 font-weight-bold">
+                        Nombres
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(model => model.Nombres)
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 font-weight-bold">
+                        DNI
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(model => model.Dni)
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col-sm-4 font-weight-bold">
+                        Teléfono
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(model => model.Telefono)
+                    </div>
+                </div>
+                    
+                <div class="row mb-3">
+                    <div class="col-sm-4 font-weight-bold">
+                        Correo Electronico
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.DisplayFor(model => model.CorreoElectronico)
+                    </div>
+                </div>
+
+                @if (Model.Direccion != null)
+                {
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold">
+                            Direccion
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(model => model.Direccion)
+                        </div>
+                    </div>
+
+                } 
+
+
+                @if (Model.FechaNacimiento != null)
+                {
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold">
+                            Fecha de Nacimiento
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(model => model.FechaNacimiento)
+                        </div>
+                    </div>
+                }
+               
+
+            </div>
+
+            <div class="d-flex justify-content-center form-group">
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.IdPersonal">Editar</a>
+            </div>            
+            <br />
+        </div>
+    </div>
+</div>

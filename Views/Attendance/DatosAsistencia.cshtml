@@ -1,0 +1,28 @@
+﻿@model List<List<string>>
+
+<table class="table" id="TablaDatosAsistencia">
+
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            @foreach (var item in ViewBag.dias)
+            {
+                <th>@item.ToString()</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <!--Modelo muestra los datos acorede al año y mes escogidos-->
+        @foreach (var alumno in Model)
+        {
+            <tr>
+                @foreach (var dato in alumno)
+                {
+                    <td>@dato</td>
+                }
+            </tr>
+        }
+    </tbody>
+
+
+</table>

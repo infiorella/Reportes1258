@@ -1,0 +1,230 @@
+﻿@{
+    ViewData["Title"] = "Informes";
+    
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center my-4">
+            <div class="col">
+                <h2 class="h3 mb-0 page-title">Informes</h2>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-secondary"><span class="fe fe-smile fe-12 mr-2"></span>¿Consultas?</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <a href="">
+                        <img src="~/img/informe-extraordinaria.jpg" alt="..." class="card-img-top img-fluid ">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-text my-2">
+                            <strong class="card-title my-0">Acta Sesión Extraordinaria</strong>
+                            <p class="small text-muted mb-0">Reuniones no establecidas </p>
+                            <p class="small"><span class="badge badge-dark">Reunión</span></p>
+                        </div>
+                    </div>
+                    <!-- ./card-text -->
+                    <div class="card-footer">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <small>
+                                    <span class="dot dot-lg bg-secondary mr-1"></span> Acta
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu m-2">
+                                        <a asp-action="List" class="dropdown-item" asp-route-type="5"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                        <a asp-action="Create" class="dropdown-item" asp-route-type="5"><i class="fe fe-edit fe-12 mr-4"></i>Crear</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.card-footer -->
+                </div>
+            </div> <!-- .col -->
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <a href="">
+                        <img src="~/img/informe-ordinaria.jpg" alt="..." class="card-img-top img-fluid">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-text my-2">
+                            <strong class="card-title my-0">Acta Sesión Ordinaria</strong>
+                            <p class="small text-muted mb-0">Reuniones establecidas cada periodo</p>
+                            <p class="small"><span class="badge badge-dark">Reunión</span></p>
+                        </div>
+                    </div> <!-- ./card-text -->
+                    <div class="card-footer">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <small>
+                                    <span class="dot dot-lg bg-secondary mr-1"></span> Acta
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu m-2">
+                                        <a asp-action="List" class="dropdown-item" asp-route-type="6"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                        <a asp-action="Create" class="dropdown-item" asp-route-type="6"><i class="fe fe-edit fe-12 mr-4"></i>Crear</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.card-footer -->
+                </div>
+            </div> <!-- .col -->
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <a href="">
+                        <img src="~/img/informe-asistencia.jpg" alt="..." class="card-img-top img-fluid rounded">
+                    </a>
+                    <div class="card-body">
+
+                        <div class="card-text my-2">
+                            <strong class="card-title my-0">Informe Asistencia</strong>
+                            <p class="small text-muted mb-0">Detalles de asistencia</p>
+                            <p class="small"><span class="badge badge-info">Asistencia</span></p>
+                        </div>
+                    </div> <!-- ./card-text -->
+                    <div class="card-footer">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <small>
+                                    <span class="dot dot-lg bg-success mr-1"></span> Informe
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu m-2">
+                                        <a asp-action="List" class="dropdown-item" asp-route-type="1"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                        <a asp-action="Create" class="dropdown-item" asp-route-type="1"><i class="fe fe-edit fe-12 mr-4"></i>Crear</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.card-footer -->
+                </div>
+            </div> <!-- .col -->
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <a href="">
+                        <img src="~/img/informe-comportamiento.jpg" alt="..." class="card-img-top img-fluid rounded">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-text my-2">
+                            <strong class="card-title my-0">Informe Comportamiento</strong>
+                            <p class="small text-muted mb-0">Reporte de mala conducta</p>
+                            <p class="small"><span class="badge badge-warning">Comportamiento</span></p>
+                        </div>
+                    </div> <!-- ./card-text -->
+                    <div class="card-footer">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <small>
+                                    <span class="dot dot-lg bg-success mr-1"></span> Informe
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu m-2">
+                                        <a asp-action="List" class="dropdown-item" asp-route-type="2"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                        <a asp-action="Create" class="dropdown-item" asp-route-type="2"><i class="fe fe-edit fe-12 mr-4"></i>Crear</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.card-footer -->
+                </div>
+            </div> <!-- .col -->
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <a href="">
+                        <img src="~/img/informe-compromisos.jpg" alt="..." class="card-img-top img-fluid rounded">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-text my-2">
+                            <strong class="card-title my-0">Informe Compromiso</strong>
+                            <p class="small text-muted mb-0">Resumen de acuerdos establecidos</p>
+                            <p class="small"><span class="badge badge-danger">Compromiso</span></p>
+                        </div>
+                    </div> <!-- ./card-text -->
+                    <div class="card-footer">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <small>
+                                    <span class="dot dot-lg bg-success mr-1"></span> Informe
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu m-2">
+                                        <a asp-action="List" class="dropdown-item" asp-route-type="3"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                        <a asp-action="Create" class="dropdown-item" asp-route-type="3"><i class="fe fe-edit fe-12 mr-4"></i>Crear</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.card-footer -->
+                </div>
+            </div> <!-- .col -->
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <a href="">
+                        <img src="~/img/informe-notas.jpg" alt="..." class="card-img-top img-fluid rounded">
+                    </a>
+                    <div class="card-body">
+                        <div class="card-text my-2">
+                            <strong class="card-title my-0">Informe Notas</strong>
+                            <p class="small text-muted mb-0">Reporte de notas de alumo</p>
+                            <p class="small"><span class="badge badge-principal">Notas</span></p>
+                        </div>
+                    </div> <!-- ./card-text -->
+                    <div class="card-footer">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <small>
+                                    <span class="dot dot-lg bg-success mr-1"></span> Informe
+                                </small>
+                            </div>
+                            <div class="col-auto">
+                                <div class="file-action">
+                                    <button type="button" class="btn btn-link dropdown-toggle more-vertical p-0 text-muted mx-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="text-muted sr-only">Action</span>
+                                    </button>
+                                    <div class="dropdown-menu m-2">
+                                        <a asp-action="List" class="dropdown-item" asp-route-type="4"><i class="fe fe-eye fe-12 mr-4"></i>Visualizar</a>
+                                        <a asp-action="Create" class="dropdown-item" asp-route-type="4"><i class="fe fe-edit fe-12 mr-4"></i>Crear</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.card-footer -->
+                </div>
+            </div> <!-- .col -->
+
+            <div class="col-md-9">
+            </div> <!-- .col -->
+        </div> <!-- .row -->
+
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->

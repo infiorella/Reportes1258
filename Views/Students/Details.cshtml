@@ -1,0 +1,291 @@
+﻿@model Models.Views.AlumnoModel
+@{
+    ViewData["Title"] = "Estudiante";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <h2 class="h3 mb-4 page-title">Alumnos</h2>
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center mb-5">
+                <div class="avatar avatar-xl">
+                    @if (Model.Sexo != null)
+
+                    {
+                        if (Model.Sexo == "M")
+                        {
+                            <img src="~/img/girl-icon.png" alt="Icono estudiante niña" class="avatar-img rounded-circle">
+                        }
+                        else if (Model.Sexo == "H")
+                        {
+                            <img src="~/img/boy-icon.png" alt="Icono estudiante niño" class="avatar-img rounded-circle">
+                        }
+                    }
+                    else
+                    {
+                        <img src="~/img/default-icon.png" alt="Icono de estudiante" class="avatar-img rounded-circle">
+                    }
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <h4 class="mb-1">@Model.ApellidoPaterno @Model.ApellidoMaterno @Model.Nombres</h4>
+                        <p class="mb-3"><span class="badge badge-dark">@Model.Grado "@Model.Seccion" </span></p>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <p class="mb-0 ">Fecha Creación: @Model.FechaCreacion</p>
+                        <p class="mb-0 ">Usuario de Creación: @Model.UserCreacion</p>
+                        <p class="mb-0 ">Estado: @Model.IdEstado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row items-align-center">
+                            <div class="col-4 text-center">
+                                <p class="text-muted mb-1">% Logro Alcanzado</p>
+                                <h6 class="mb-0" id="PorcentajeLogroAlcanzado"></h6>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p class="text-muted mb-1">Logro Alcanzado</p>
+                                <h6 class="mb-0" id="LogroAlcanzado"></h6>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p class="text-muted mb-1">Logro No Alcanzado</p>
+                                <h6 class="mb-0" id="LogroNoAlcanzado"></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div> <!-- .card-body -->
+        </div>
+        <input value="@Model.IdAlumno" id="StudentId" type="hidden" />
+        <div class="card shadow mt-5 mb-4">
+            <div class="card-header">
+                <strong class="card-title">Detalles</strong>
+            </div>
+            <div class="card-body">
+                <dl class="row align-items-center mb-0">
+                    <dt class="col-sm-2 mb-3 ">Código Estudiante</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">
+                        @Model.CodigoEstudiante
+
+                    <dt class="col-sm-2 mb-3">Validado RENIEC</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">
+                            @Model.ValidadoReniec
+                    </dd>
+
+
+                </dl>
+                <dl class="row mb-0">
+                    <dt class="col-sm-2 mb-3 ">Tipo Documento</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.TipoDocumento</dd>
+
+                    <dt class="col-sm-2 mb-3"># Documento</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.NumeroDocumento</dd>
+                </dl>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-2 mb-3 ">Sexo</dt>
+                    <dd class="col-sm-4 mb-3">
+                        <span class="badge badge-pill badge-danger">@Model.SexoConcepto</span>
+
+
+                    <dt class="col-sm-2 mb-3">Fecha Nacimiento</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@(Model.FechaNacimiento.HasValue ? Model.FechaNacimiento.Value.Date.ToString("dd MMM yyyy") : null)</dd>
+                </dl>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-2 mb-3">País</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.Pais</dd>
+
+                    <dt class="col-sm-2 mb-3">Lengua Materna</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.LenguaMaterna</dd>
+                </dl>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-2 mb-3">Segunda Lengua</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.SegundaLengua</dd>
+
+                    <dt class="col-sm-2 mb-3">Tipo de Discapacidad</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.TipoDiscapacidad</dd>
+                </dl>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-2 mb-3">Nacimiento Registrado</dt>
+                    <dd class="col-sm-4 mb-3 text-muted">@Model.NacimientoRegistrado</dd>
+
+                    <dt class="col-sm-2 mb-3">Horas Labora</dt>
+                    <dd class="col-sm-4 mb-3 text-muted"> @Model.HorasLabora</dd>
+
+                </dl>
+            </div> <!-- .card-body -->
+        </div>
+
+        <h3>Parentésco</h3>
+        <p class="text-muted">Familiares directos del estudiante</p>
+        <div class="card-deck my-4">
+            @foreach (var item in Model.Padres)
+            {
+                <div class="card mb-4 ">
+                    <div class="card-body  my-4">
+
+                        <h3 class="h5 mt-4 text-center mb-0">@item.Apellidos @item.Nombres</h3>
+
+                        @if (item.Parentesco == "P")
+                        {
+                            <p class="text-muted text-center">Padre</p>
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">Madre</p>
+                        }
+
+                        <dl class="row mb-0">
+                            <dt class="col-sm-5 mb-6">Tipo de Documento</dt>
+                            <dd class="col-sm-7 mb-6 text-muted">@item.TipoDocumento</dd>
+                        </dl>
+                        <dl class="row mb-0">
+                            <dt class="col-sm-5 mb-6">Número de Documento</dt>
+                            <dd class="col-sm-7 mb-6 text-muted">@item.Numero</dd>
+                        </dl>
+                        <dl class="row mb-0">
+                            <dt class="col-sm-5 mb-6">Validado con RENIEC</dt>
+                            @if (item.ValidadoReniec == 1)
+                            {
+                                <dd class="col-sm-7 mb-6 text-muted">SI</dd>
+                            }
+                            else
+                            {
+                                <dd class="col-sm-7 mb-6 text-muted">NO</dd>
+
+                            }
+                        </dl>
+                        <dl class="row mb-0">
+                            <dt class="col-sm-5 mb-6">Correo Electrónico</dt>
+                            <dd class="col-sm-7 mb-6 text-muted">@item.CorreoElectronico</dd>
+                        </dl>
+                        <dl class="row mb-0">
+                            <dt class="col-sm-5 mb-6">Número Celular</dt>
+                            <dd class="col-sm-7 mb-6 text-muted">@item.Telefono</dd>
+                        </dl>
+                        <br>
+                        <div class="text-center">
+                            @if (Model.MadreVive.Equals("SI") || Model.PadreVive.Equals("SI"))
+                            {
+                                <span class="dot dot-lg bg-success"></span>
+                                <span class="text-muted ml-3">Vive</span>
+                            }
+                            else
+                            {
+                                <span class="dot dot-lg bg-danger"></span>
+                                <span class="text-muted ml-3">No Vive</span>
+                            }
+                        </div>
+                    </div> <!-- .card-body -->
+                </div> <!-- .card -->
+            }
+        </div> <!-- .card-group -->
+        <h3>Matrícula</h3>
+
+        <div class="list-group mb-5 shadow">
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <strong class="mb-2">Estado Matricula</strong>
+                        <p class="text-danger mb-0">Definitiva</p><!--En proceso, Trasalado-->
+                    </div> <!-- .col -->
+                    <div class="col">
+                        <strong class="mb-2">Situación Matricula</strong>
+                        <p class="text-muted mb-0">@Model.SituacionMatricula</p>
+                    </div> <!-- .col -->
+                </div> <!-- .row -->
+            </div> <!-- .list-group-item -->
+            @if (Model.CodigoModular != null)
+            {
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <strong class="mb-2">Código Modular Pre</strong>
+                            <p class="text-muted mb-0">@Model.CodigoModular</p>
+                        </div> <!-- .col -->
+                        <div class="col">
+                            <strong class="mb-2">Nombre Pre</strong>
+                            <p class="text-muted mb-0">@Model.NombreRjrd</p>
+                        </div> <!-- .col -->
+                    </div> <!-- .row -->
+                </div> <!-- .list-group-item -->
+            }
+
+
+        </div> <!-- .list-group-item -->
+    </div>
+
+
+    <h3>Incidencias</h3>
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header">
+                <strong class="card-title">Incidencias reportadas</strong>
+                <a class="float-right small text-muted" href="#!">Ver Todo</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless my-n3">
+                    <thead class="d-none">
+                        <tr>
+                            <th>Icon</th>
+                            <th class="w-50">File</th>
+                            <th>Owner</th>
+                            <th>Last Update</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AlumnoComportamientos)
+                        {
+                            <tr>
+                                <td><span class="fe fe-24 fe-folder mx-2 text-muted"></span></td>
+                                <th scope="row">
+                                    <small>
+                                        <strong>@item.IdComportamientoNavigation.Descripcion</strong><small>
+                                            <br>
+                                            <span class="badge badge-light text-muted mr-2">@item.IdComportamientoNavigation.FechaIncidencia</span>
+                                        </small>
+                                    </small>
+                                </th>
+                                <td>
+                                    <small>@item.IdComportamientoNavigation.Estado</small><br>
+                                    <small class="text-muted">@item.IdComportamientoNavigation.MedidasCorrectivas</small>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm dropdown-toggle more-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="">
+                                            <a class="dropdown-item" href="#"><small>Visualizar</small></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div> <!-- / .list-group -->
+        </div> <!-- / .card-body -->
+    </div>
+
+</div> <!-- /.col-12 -->
+@section scripts
+    {
+    <script src="~/js/jquery.sparkline.min.js"></script>
+    <script src="~/js/apexcharts.min.js"></script>
+    <script src="~/js/Content/students.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,30 @@
+﻿#users--list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    #users--list .card {
+        margin-top: 20px;
+        height: 150px;
+    }
+
+#users--new {
+    background-color: var(--bs-primary);
+    height: 75px !important;
+}
+
+    #users--new i {
+        font-size: 50px;
+    }
+
+#users--create {
+    padding: 20px;
+}
+
+    #users--create form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+

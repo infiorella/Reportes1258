@@ -1,0 +1,243 @@
+﻿@model Models.Comportamiento
+
+@{
+    ViewData["Title"] = "Reporte Comportamiento";
+}
+
+@section AddToHead{        
+    <link href="@Url.Content("~/css/select2.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/app-steps.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/jquery.timepicker.css")" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        #msform #progressbar li {
+            width: calc(100%/4);
+        }
+
+        #progressbar #General:before {
+            font-family: FontAwesome;
+            content: "\f023";
+        }
+
+        #progressbar #Alumnos:before {
+            font-family: FontAwesome;
+            content: "\f023";
+        }
+
+        #progressbar #Medidas:before {
+            font-family: FontAwesome;
+            content: "\f023";
+        }
+
+        #progressbar #Final:before {
+            font-family: FontAwesome;
+            content: "\f007";
+        }
+    </style>
+}
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+        <h2 class="page-title">Nueva Acta de Comportamiento</h2>
+        <p>Creación de informe</p>
+        @if (TempData["msg"] != null)
+        {
+            @if (TempData["Status"].ToString() == "1")
+            {
+
+                <div class="alert alert-success" role="alert">
+                    <span class="fe fe-smile fe-16 mr-2"></span> @TempData["msg"]
+                </div>
+
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span class="fe fe-alert-triangle fe-16 mr-2"></span> @TempData["msg"]
+                </div>
+            }
+        }
+        <div class="card my-4">
+            <div class="card-header">
+                <strong>Creación de Informe</strong>
+            </div>
+            <div class="card-body">
+                <form id="msform" asp-action="CreateBehavior" asp-controller="Reports">
+                    <input asp-for="IdInformeNavigation.IdPersonal" hidden />
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="General"><strong>Datos Generales</strong></li>
+                        <li id="Alumnos"><strong>Alumnos</strong></li>
+                        <li id="Medidas"><strong>Medidas Correctivas</strong></li>
+                        <li id="Final"><strong>Final</strong></li>
+                    </ul>
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label class="control-label">Docente</label>
+                                        <p class="form-control">@Model.IdInformeNavigation.IdPersonalNavigation.Nombres @Model.IdInformeNavigation.IdPersonalNavigation.Apellidos</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <label asp-for="IdInformeNavigation.IdPersonalNavigation.Grado" class="control-label">Sección</label>
+                                        <select asp-for="IdInformeNavigation.IdPersonalNavigation.Grado" class="form-control select2" disabled id="simple-select2">
+                                            <option value="1">Primero</option>
+                                            <option value="2">Segundo</option>
+                                            <option value="3">Tercero</option>
+                                            <option value="4">Cuarto</option>
+                                            <option value="5">Quinto</option>
+                                            <option value="6">Sexto</option>
+                                        </select>
+                                        <span asp-validation-for="IdInformeNavigation.IdPersonalNavigation.Grado" class="text-danger"></span>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <label asp-for="IdInformeNavigation.IdPersonalNavigation.Seccion" class="control-label">Grado</label>
+                                        <select asp-for="IdInformeNavigation.IdPersonalNavigation.Seccion" class="form-control select2" disabled id="simple-select2">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                        </select>
+                                        <span asp-validation-for="IdInformeNavigation.IdPersonalNavigation.Seccion" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label asp-for="FechaIncidencia" class="control-label">Fecha de Incidencia: *</label>
+                                    <div class="input-group">
+                                        <input asp-for="FechaIncidencia" class="form-control" value='@DateTime.Today.ToString("yyyy-MM-ddThh:mm")' />
+                                        <span asp-validation-for="FechaIncidencia" class="text-danger"></span>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label asp-for="Tipo" class="control-label">Tipo de Comportamiento</label>
+                                <select asp-for="Tipo" class="form-control">
+                                    <option value="1">Bullying</option>
+                                    <option value="2">Bulla en clase</option>
+                                    <option value="3">Indiciplina</option>
+                                    <option value="4">Falta de respeto</option>
+                                    <option value="5">Malas palabras</option>
+                                    <option value="6">Otros</option>
+                                </select>
+                                <span asp-validation-for="Tipo" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label asp-for="Descripcion" class="control-label">Descripción</label>
+                            <textarea asp-for="Descripcion" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="help-text text-muted">(*) Obligatorio</div>
+                        <br />
+                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                    </fieldset>
+
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label asp-for="AlumnoComportamientos" class="control-label">Alumnos</label>
+                            <div class="button-container">
+                                <button type="button" onclick="selectAll()" class="btn mb-2 btn-primary"><span class="fe fe-arrow-right fe-16 mr-2"></span>Todos</button>
+                                <button type="button" onclick="deselectAll()" class="btn mb-2 btn-success">Ninguno<span class="fe fe-chevron-right fe-16 ml-2"></span></button>
+                            </div>
+
+                            <select asp-for="AlumnoComportamientos" class="form-control select2-multi required" multiple id="alumnos"
+                                    asp-items="ViewBag.IdAlumnos"></select>
+                            <span asp-validation-for="AlumnoComportamientos" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="help-text text-muted">(*) Obligatorio</div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                    </fieldset>
+
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label asp-for="MedidasCorrectivas" class="control-label">Medidas Correctivas</label>
+                            <textarea asp-for="MedidasCorrectivas" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="MedidasCorrectivas" class="text-danger"></span>
+                        </div> <!-- /.card-body -->
+
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label asp-for="Estado" class="control-label">Estado</label>
+                                <select asp-for="Estado" class="form-control select2">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2">Reportado</option>
+                                    <option value="3">Solucionado</option>
+                                </select>
+                                <span asp-validation-for="Estado" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <br>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label asp-for="Observacion" class="control-label">Comentario</label>
+                            <div>
+                                <textarea asp-for="Observacion" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                    </fieldset>
+
+
+                    <fieldset>
+                        <div class="form-group">
+                            <label asp-for="IdInformeNavigation.Comentario" class="control-label">Comentarios</label>
+                            <textarea asp-for="IdInformeNavigation.Comentario" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="IdInformeNavigation.Comentario" class="text-danger"></span>
+
+                            <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                            <input type="submit" name="next" class="next action-button" value="Generar" />
+                        </div>
+                    </fieldset>
+                </form>
+            </div> <!-- .card-body -->
+        </div> <!-- .card -->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
+@section scripts
+    {
+    <script src='~/js/select2.min.js' type="text/javascript"></script>
+    <script src='~/js/jquery.timepicker.js' type="text/javascript"></script>
+}
+
+@section SingleScripts
+    {
+    <script src='~/js/app-steps.js' type="text/javascript"></script>
+    <script src="~/js/Reports/ReportCreateBehaviour.js" type="text/javascript" asp-append-version="true"></script>
+}

@@ -1,0 +1,6 @@
+﻿#students--table {
+    font-size: 10px;
+    display: block;
+    overflow-x: auto;
+    width: 100% !important;
+}

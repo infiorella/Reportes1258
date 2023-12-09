@@ -1,0 +1,21 @@
+﻿1)	Instalar: 
+-	Microsoft.AspNetCore.Diagnostics.entityframeworkcore  v. 6.0.16
+-	Microsoft.AspNetCore.Identity.EntityFrameworkCore v.6.0.16
+-	Microsoft.EntityFrameworkCore 6.0.16
+-	Microsoft.EntityFrameworkCore.SqlServer 6.0.16
+-	Microsoft.EntityFrameworkCore.Tools 6.0.16
+
+2)	Abrir la consola: Tools->Nuget package manager-> Package Manager Controller
+
+3)	Escribir Scaffold-DbContext "Connectionstring" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models.
+Ejemplo: Scaffold-DbContext "Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=Colegio1258;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+En caso de sobreescribir en migración ya realizada:
+1)	Escribir Scaffold-DbContext "Connectionstring" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models.
+Ejemplo: Scaffold-DbContext "Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=Colegio1258;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models  -force
+
+-------------------------------
+Para el identity
+1) Abrir la consola
+2) Escribir "add-migration 'init' -Context"
+3) Update-database -Context DatabaseContex

@@ -1,0 +1,211 @@
+﻿@model Models.Views.DocenteIndexModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row align-items-center mb-2">
+            <div class="col">
+                <h2 class="h5 page-title">Bienvenido @Model.Nombres</h2>
+                <br>
+                <div class="row">
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-3 text-center">
+                                        <span class="circle circle-sm bg-primary">
+                                            <i class="fe fe-16 fe-book text-white mb-0"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <p class="small text-muted mb-0">Informes Creados</p>
+                                        <span class="h3 mb-0">@Model.InformesCreados</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-3 text-center">
+                                        <span class="circle circle-sm bg-primary">
+                                            <i class="fe fe-16 fe-thumbs-up text-white mb-0"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <p class="small text-muted mb-0">Informes Aprobados</p>
+                                        <span class="h3 mb-0">@Model.InformesAprobados</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-3 text-center">
+                                        <span class="circle circle-sm bg-primary">
+                                            <i class="fe fe-16 fe-clock text-white mb-0"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <p class="small text-muted mb-0">Incidencias Reportadas</p>
+                                        <span class="h3 mb-0">@Model.IncidenciasReportadas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-3 text-center">
+                                        <span class="circle circle-sm bg-primary">
+                                            <i class="fe fe-16 fe-award text-white mb-0"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <p class="small text-muted mb-0">Reuniones Realizadas</p>
+                                        <span class="h3 mb-0">@Model.ReunionesRealizadas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end section -->
+            </div>
+
+        </div>
+
+        <h2 class="h5">Actividades de Estudiantes</h2>
+        <p class="text-muted">Incidencias y reuniones registradas en el último mes</p>
+
+        <div class="row items-align-baseline">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <strong class="card-title">Incidencias con alumnos</strong>
+                    </div>
+                    @if (Model.IncidenciasAlumnos.Count == 0)
+                    {
+                        <div class="card-body">
+                            <div class="list-group list-group-flush my-n3"> Aún no se han registrado incidencias</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body">
+                            <div class="list-group list-group-flush my-n3">
+
+                                @foreach (var item in Model.IncidenciasAlumnos)
+                                {
+                                    <div class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <span class="fe fe-alert-circle fe-24"></span>
+                                            </div>
+                                            <div class="col">
+                                                <small><strong>@item.Tipo</strong></small>
+                                                <div class="my-0 text-muted small">@item.Descripcion</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <small class="badge badge-pill badge-light text-muted">@item.FechaIncidencia.ToString("dd/MM/yyyy")</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div> <!-- / .list-group -->
+                        </div> <!-- / .card-body -->
+                    }
+                </div> <!-- / .card -->
+            </div>
+
+
+            <div class="col-md-6 mb-4">
+                <div class="card timeline">
+                    <div class="card-header">
+                        <strong class="card-title">Reuniones Registradas</strong>
+                    </div>
+                    @if (Model.Reuniones.Count == 0)
+                    {
+                        <div class="card-body">
+                            <div class="list-group list-group-flush my-n3"> Aún no se han registrado reuniones</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body">
+                            @foreach (var item in Model.Reuniones)
+                            {
+                                <div class="pb-3 timeline-item item-primary">
+                                    <div class="pl-5">
+                                        <div class="mb-1"><strong>@item.FechaReunion.ToString("dd/MM/yyyy")</strong></div>
+                                        <p class="small text-muted">
+                                            @item.Acuerdos<span class="badge badge-secondary">@item.TipoReunion</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div> <!-- / .card-body -->
+                    }
+                </div> <!-- / .card -->
+            </div>
+
+        </div> <!-- .row -->
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <strong class="card-title">Informes Pendientes</strong>
+                    </div>
+                    @if (Model.Informes == null)
+                    {
+                        <div class="card-body">
+                            <div class="list-group list-group-flush my-n3"> Aún no se han registrado informes</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body">
+                            <div class="list-group list-group-flush my-n3">
+
+                                @foreach (var item in Model.Informes)
+                                {
+                                    <div class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <span class="circle circle-sm bg-warning"><i class="fe fe-clipboard fe-16 text-white"></i></span>
+                                            </div>
+                                            <div class="col">
+                                                <small><strong>@item.FechaCreacion.Value.ToString("dd/MM/yyyy")</strong></small>
+                                                <div class="mb-2 text-muted small">
+                                                    @item.Descripcion
+                                                </div>
+                                                <span class="badge badge-pill badge-secondary">@item.Tipo</span>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <small class="fe fe-more-vertical fe-16 text-muted">@item.EstadoInforme</small>
+                                            </div>
+                                        </div> <!-- / .row -->
+                                    </div>
+
+                                    <!-- / .list-group-item -->
+                                }
+                            </div> <!-- / .list-group -->
+                        </div> <!-- / .card-body -->
+                    }
+                </div> <!-- / .card -->
+            </div>
+        </div> <!-- .row-->
+    </div> <!-- .col-12 -->
+</div> <!-- .row -->
